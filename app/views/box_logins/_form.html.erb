@@ -1,0 +1,25 @@
+<%= form_for(@box_login) do |f| %>
+  <% if @box_login.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@box_login.errors.count, "error") %> prohibited this box_login from being saved:</h2>
+
+      <ul>
+      <% @box_login.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :details %><br>
+    <%= f.text_area :details %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

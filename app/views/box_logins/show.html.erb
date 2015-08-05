@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @box_login.name %>
+</p>
+
+<p>
+  <strong>Details:</strong>
+  <%= @box_login.details %>
+</p>
+
+<%= link_to 'Edit', edit_box_login_path(@box_login) %> |
+<%= link_to 'Back', box_logins_path %>
