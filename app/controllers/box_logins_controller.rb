@@ -18,7 +18,7 @@ class BoxLoginsController < ApplicationController
       client_id: ENV['BOX_CLIENT_ID'],
       client_secret: ENV['BOX_CLIENT_SECRET']
     })
-    authorize_url = session.authorize_url('http://localhost:4005/box_logins/callback')
+    authorize_url = session.authorize_url("#{ENV["REDIRECT_HOST"]}/box_logins/callback")
     redirect_to authorize_url
   end
 
