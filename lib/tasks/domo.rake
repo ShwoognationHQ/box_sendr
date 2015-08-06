@@ -44,8 +44,8 @@ LEFT OUTER JOIN users ON users.id = line_items.user_id
 LEFT OUTER JOIN products ON products.id = line_items.product_id
 
 WHERE line_items.invoice_id is not null AND line_items.invoice_id != 0
-limit 1000000
 order by id desc
+limit 1000000
 SQL
 
   puts "got a lot of line_items..."
