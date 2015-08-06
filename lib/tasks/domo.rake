@@ -13,7 +13,18 @@ task :upload_domo_csv_files => :environment do
 
   @client = RubyBox::Client.new(session)
 
-  folders = @client.root_folder.folders
+  begin
+    folders = @client.root_folder.folders
+  rescue
+    @token = session.refresh_token(BoxLogin.first.refresh_token)
+    @box_login = BoxLogin.first
+    @box_login.details = {token: @token.token, refresh_token: @token.refresh_token}
+    @box_login.name = "BoxAuth"
+    @box_login.save
+    @client = RubyBox::Client.new(session)
+    folders = @client.root_folder.folders
+  end
+
   destination_folder = folders.select {|i| i.name == 'DOMO_DATA'}.first
 
   puts "got box.com initialized..."
