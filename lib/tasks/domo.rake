@@ -28,7 +28,7 @@ task :upload_domo_csv_files => :environment do
   #line_items upload
   line_items =  ActiveRecord::Base.connection.execute(<<SQL)
 
-SELECT products.account_id, line_items.cost, line_items.id, line_items.name, line_items.created_at, line_items.discount_percent, line_items.estimate_id,
+SELECT CAST (products.account_id AS varchar(4)) AS account_id, line_items.cost, line_items.id, line_items.name, line_items.created_at, line_items.discount_percent, line_items.estimate_id,
 estimated_quantity, line_items.invoice_bundle_id, line_items.invoice_bundle_line_id,
 line_items.invoice_id, line_items.item, line_items.price, (line_items.quantity * line_items.cost) as cost_extended, (line_items.quantity * line_items.price) as price_extended, (line_items.quantity * (line_items.price - line_items.cost)) as net, line_items.product_category, line_items.product_id, line_items.quantity, tax_note,
 line_items.tax_rate_id, line_items.taxable, ticket_line_item_id, line_items.updated_at, used_quantity, line_items.quantity, line_items.user_id,
